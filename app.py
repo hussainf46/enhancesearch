@@ -35,7 +35,7 @@ class JSONEncoder(json.JSONEncoder):
         return json.JSONEncoder.default(self, o)
         
 
-fi=[]  
+
 @app.route('/')
 def home():
     return render_template('index.html')
@@ -45,6 +45,7 @@ def predict():
     '''
     For rendering results on HTML GUI
     '''
+    fi=[]
     result=db.questions.find()
     #print(result) 
     #print('hello')
