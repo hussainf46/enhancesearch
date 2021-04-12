@@ -19,7 +19,7 @@ app = Flask(__name__)
 
 spacy.cli.download("en_core_web_md")
 client=MongoClient('mongodb+srv://hussain:9773669443@enhance.bo4mo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
-nlp = spacy.load('en_core_web_md')
+nlp = spacy.load('en_core_web_sm')
 db=client.Enhance
 
 class geeks: 
