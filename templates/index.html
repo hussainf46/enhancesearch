@@ -14,17 +14,6 @@
 <body>
  <div class="login">
 	<h1>Predict Salary Analysis</h1>
-
-     <!-- Main Input For Receiving Query to our ML -->
-    <form action="{{ url_for('abuse')}}"method="post">
-    	<input type="text" name="message" placeholder="Enter some text" required="required" />
-        <button type="submit" class="btn btn-primary btn-block btn-large">Predict</button>
-    </form>
-
-   <br>
-   <br>
-   {{ prediction_text }}
-
  </div>
 
 
