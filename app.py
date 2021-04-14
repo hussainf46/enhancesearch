@@ -23,7 +23,7 @@ nlp = spacy.load('en_core_web_sm')
 db=client.Enhance
 
 class geeks: 
-    def __init__(self, ids , name, roll,votes): 
+    def __init__(self, ids , name, roll,time,votes): 
         self.id=ids
         self.name = name 
         self.roll = roll
