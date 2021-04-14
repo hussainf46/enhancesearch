@@ -38,10 +38,13 @@ class JSONEncoder(json.JSONEncoder):
         if isinstance(o, ObjectId):
             return str(o)
         return json.JSONEncoder.default(self, o)
-        
-def myconverter(o):
-    if isinstance(o, datetime.datetime):
-        return o.__str__()
+      
+class DateTimeEncoder(json.JSONEncoder):
+        #Override the default method
+        def default(self, obj):
+            if isinstance(obj, (datetime.date, datetime.datetime)):
+                return obj.isoformat()
+
 
 @app.route('/')
 def home():
@@ -83,7 +86,7 @@ def predict():
         
        
     print(data['sent1'])
-    return json.dumps(y, cls=JSONEncoder,default=myconverter)
+    return json.dumps(y, cls=JSONEncoder,cls=DateTimeEncoder)
 
 if __name__ == "__main__":
     app.run(debug=True)
