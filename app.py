@@ -38,7 +38,9 @@ class JSONEncoder(json.JSONEncoder):
             return str(o)
         return json.JSONEncoder.default(self, o)
         
-
+def myconverter(o):
+    if isinstance(o, datetime.datetime):
+        return o.__str__()
 
 @app.route('/')
 def home():
@@ -57,7 +59,7 @@ def predict():
         #print("hiii")
         #print(q['_id'])
         #print(q['question'])
-        fi.append({'id': q['_id'],'question' : q['question'],'time':q['time'],'votes':q['__v']})
+        fi.append({'id': q['_id'],'question' : q['question'],'time':q['time'],'votes':q['votes']})
         
     data=request.get_json()
     
@@ -80,7 +82,7 @@ def predict():
         
        
     print(data['sent1'])
-    return json.dumps(y, cls=JSONEncoder,default=json_util.default)
+    return json.dumps(y, cls=JSONEncoder,default=myconverter)
 
 if __name__ == "__main__":
     app.run(debug=True)
