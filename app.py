@@ -80,7 +80,7 @@ def predict():
         
        
     print(data['sent1'])
-    return json.dumps(y, cls=JSONEncoder,default=json_util.defaulv)
+    return json.dumps(y, cls=JSONEncoder,default=json_util.default)
 
 if __name__ == "__main__":
     app.run(debug=True)
