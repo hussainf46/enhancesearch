@@ -83,7 +83,7 @@ def predict():
         y.append({'id': obj.id,'question' : obj.name,'percentage':obj.roll,'time':obj.time,'votes':obj.votes})
         
        
-    print(data['sent1'])
+    #print(data['sent1'])
     return json.dumps(y, cls=JSONEncoder)
 
 if __name__ == "__main__":
