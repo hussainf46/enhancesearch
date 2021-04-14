@@ -35,18 +35,12 @@ class geeks:
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
-        if isinstance(o, (datetime.date, datetime.datetime)):
-            o=o.isoformat()
         if isinstance(o, ObjectId):
             return str(o)
         return json.JSONEncoder.default(self, o)
     
       
-class DateTimeEncoder(json.JSONEncoder):
-        #Override the default method
-        def default(self, obj):
-            if isinstance(obj, (datetime.date, datetime.datetime)):
-                return obj.isoformat()
+
 
 
 @app.route('/')
@@ -82,7 +76,8 @@ def predict():
         search_doc_no_stop_words = nlp(' '.join([str(t) for t in search_doc if not t.is_stop]))
         main_doc_no_stop_words = nlp(' '.join([str(t) for t in main_doc if not t.is_stop]))
         percentage=search_doc_no_stop_words.similarity(main_doc_no_stop_words)
-        output.append( geeks(tu['id'],sent2, percentage,tu['time'],tu['votes']))
+        n=datetime.tu['time']
+        output.append( geeks(tu['id'],sent2, percentage,n.strftime("%m/%d/%Y, %H:%M:%S"),tu['votes']))
     output.sort(key=lambda x: x.roll,reverse=True)
     for obj in output:
         y.append({'id': obj.id,'question' : obj.name,'percentage':obj.roll,'time':obj.time,'votes':obj.votes})
