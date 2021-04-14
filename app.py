@@ -57,7 +57,7 @@ def predict():
         #print("hiii")
         #print(q['_id'])
         #print(q['question'])
-        fi.append({'id': q['_id'],'question' : q['question'],'time':q['time'],'votes':q['_v']})
+        fi.append({'id': q['_id'],'question' : q['question'],'time':q['time'],'votes':q['__v']})
         
     data=request.get_json()
     
