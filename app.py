@@ -35,9 +35,12 @@ class geeks:
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
+        if isinstance(o, (datetime.date, datetime.datetime)):
+            o=o.isoformat()
         if isinstance(o, ObjectId):
             return str(o)
         return json.JSONEncoder.default(self, o)
+    
       
 class DateTimeEncoder(json.JSONEncoder):
         #Override the default method
@@ -86,7 +89,7 @@ def predict():
         
        
     print(data['sent1'])
-    return json.dumps(y, cls=JSONEncoder,cls=DateTimeEncoder)
+    return json.dumps(y, cls=JSONEncoder)
 
 if __name__ == "__main__":
     app.run(debug=True)
