@@ -12,11 +12,13 @@ from pymongo import MongoClient
 import json
 from bson import ObjectId,json_util
 import datetime
+from flask_cors import CORS, cross_origin
   
 #------------------------------------------------------------------------------------------------------------
 #flask code
   
 app = Flask(__name__)
+CORS(app, support_credentials=True)
 
 spacy.cli.download("en_core_web_sm")
 client=MongoClient('mongodb+srv://hussain:9773669443@enhance.bo4mo.mongodb.net/myFirstDatabase?retryWrites=true&w=majority')
@@ -48,6 +50,7 @@ def home():
     return render_template('index.html')
 
 @app.route('/search',methods=['POST'])
+@cross_origin(supports_credentials=True)
 def predict():
     '''
     For rendering results on HTML GUI
