@@ -66,7 +66,7 @@ def predict():
     
     output=[]
     y=[]
-    sent1=data['sent1'] 
+    sent1=data['sentence'] 
     main_doc = nlp(sent1)
     for tu in fi:
         sent2=tu['question']
