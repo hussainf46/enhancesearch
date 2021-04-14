@@ -10,7 +10,7 @@ import spacy.cli
 from flask import Flask, request, jsonify, render_template
 from pymongo import MongoClient
 import json
-from bson import ObjectId
+from bson import ObjectId,json_util
   
 #------------------------------------------------------------------------------------------------------------
 #flask code
@@ -80,7 +80,7 @@ def predict():
         
        
     print(data['sent1'])
-    return json.dumps(y, cls=JSONEncoder)
+    return json.dumps(y, cls=JSONEncoder,default=json_util.defaulv)
 
 if __name__ == "__main__":
     app.run(debug=True)
