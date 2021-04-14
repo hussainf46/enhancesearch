@@ -23,10 +23,14 @@ nlp = spacy.load('en_core_web_sm')
 db=client.Enhance
 
 class geeks: 
-    def __init__(self, ids , name, roll): 
+    def __init__(self, ids , name, roll,votes): 
         self.id=ids
         self.name = name 
         self.roll = roll
+        self.time=time
+        self.votes=votes
+        
+        
 
 class JSONEncoder(json.JSONEncoder):
     def default(self, o):
@@ -53,7 +57,7 @@ def predict():
         #print("hiii")
         #print(q['_id'])
         #print(q['question'])
-        fi.append({'id': q['_id'],'question' : q['question']})
+        fi.append({'id': q['_id'],'question' : q['question'],'time':q['time'],'votes':q['_v']})
         
     data=request.get_json()
     
@@ -69,10 +73,10 @@ def predict():
         search_doc_no_stop_words = nlp(' '.join([str(t) for t in search_doc if not t.is_stop]))
         main_doc_no_stop_words = nlp(' '.join([str(t) for t in main_doc if not t.is_stop]))
         percentage=search_doc_no_stop_words.similarity(main_doc_no_stop_words)
-        output.append( geeks(tu['id'],sent2, percentage))
+        output.append( geeks(tu['id'],sent2, percentage,tu['time'],tu['votes']))
     output.sort(key=lambda x: x.roll,reverse=True)
     for obj in output:
-        y.append({'id': obj.id,'question' : obj.name,'percentage':obj.roll})
+        y.append({'id': obj.id,'question' : obj.name,'percentage':obj.roll,'time':obj.time,'votes':obj.votes})
         
        
     print(data['sent1'])
