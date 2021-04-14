@@ -76,7 +76,7 @@ def predict():
         search_doc_no_stop_words = nlp(' '.join([str(t) for t in search_doc if not t.is_stop]))
         main_doc_no_stop_words = nlp(' '.join([str(t) for t in main_doc if not t.is_stop]))
         percentage=search_doc_no_stop_words.similarity(main_doc_no_stop_words)
-        n=datetime.tu['time']
+        n=tu['time']
         output.append( geeks(tu['id'],sent2, percentage,n.strftime("%m/%d/%Y, %H:%M:%S"),tu['votes']))
     output.sort(key=lambda x: x.roll,reverse=True)
     for obj in output:
